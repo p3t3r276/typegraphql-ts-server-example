@@ -1,0 +1,70 @@
+version: "3.7"
+
+networks:
+  test:
+    driver: bridge
+volumes:
+  test_pgData:
+  test_pgAdmin:
+  pgData-test:
+
+services:
+  # PostgreSQL Database
+  db:
+    image: postgres:11-alpine
+    volumes:
+      - test_pgData:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: typegraphql-example
+    restart: unless-stopped
+    networks:
+      - test
+        
+  test-db:
+    image: postgres:11-alpine
+    volumes:
+      - pgData-test:/var/lib/postgresql/data
+    ports:
+      - 5431:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: typegraphql-example-test
+    restart: unless-stopped
+    networks:
+      - test
+
+
+  # pgAdmin4 database dashboard
+  dashboard:
+    image: dpage/pgadmin4
+    depends_on:
+      - db
+      - test-db
+    links:
+      - db
+      - test-db
+    volumes:
+      - test_pgAdmin:/root/.pgadmin
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+    restart: unless-stopped
+    networks:
+      - test
+
+  redis-server:
+    image: redis
+    command: ["redis-server", "--bind", "redis", "--port", "6379"]
+    hostname: "redis"
+    ports:
+      - 6379:6379
+    restart: unless-stopped
+    networks:
+      - test
