@@ -28,17 +28,19 @@ const registerMutation = `
 describe("Register", () => {
   it("create user", async () => {
     console.log(
-      await gCall({
-        source: registerMutation,
-        variableValues: {
-          data: {
-            firstName: "bob",
-            lastName: "Doe",
-            email: "bob2@bob.com",
-            password: "123456"
+      JSON.stringify(
+        await gCall({
+          source: registerMutation,
+          variableValues: {
+            data: {
+              firstName: "bob",
+              lastName: "Doe",
+              email: "bob2@bob.com",
+              password: "1234567"
+            }
           }
-        }
-      })
+        })
+      )
     );
   });
 });
