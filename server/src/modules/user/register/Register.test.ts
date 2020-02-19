@@ -12,7 +12,17 @@ afterAll(async () => {
 });
 
 const registerMutation = `
-
+  mutation Register($data: RegisterInput!) {
+    register (
+      data: $data
+    ) {
+      id
+      firstName
+      lastName
+      email
+      name
+    }
+  }  
 `;
 
 describe("Register", () => {
@@ -24,8 +34,8 @@ describe("Register", () => {
           data: {
             firstName: "bob",
             lastName: "Doe",
-            email: "bob@bob.com",
-            password: 123456
+            email: "bob2@bob.com",
+            password: "123456"
           }
         }
       })
