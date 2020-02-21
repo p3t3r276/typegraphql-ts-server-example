@@ -9,8 +9,8 @@ export const testConn = (drop: boolean = false) => {
     username: "postgres",
     password: "postgres",
     database: "typegraphql-example-test",
-    synchronize: true,
+    synchronize: drop,
     dropSchema: drop,
-    entities: [__dirname + "/.../entity/*.*"]
+    entities: [__dirname + "/../entity/*.*"]
   });
 };
