@@ -6,7 +6,7 @@ networks:
 volumes:
   test_pgData:
   test_pgAdmin:
-  pgData-test:
+  pgData_test:
 
 services:
   # PostgreSQL Database
@@ -27,7 +27,7 @@ services:
   test-db:
     image: postgres:11-alpine
     volumes:
-      - pgData-test:/var/lib/postgresql/data
+      - pgData_test:/var/lib/postgresql/data
     ports:
       - 5431:5432
     environment:
