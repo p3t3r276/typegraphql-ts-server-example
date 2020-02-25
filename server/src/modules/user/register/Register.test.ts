@@ -57,5 +57,5 @@ describe("Register", () => {
     expect(dbUser).toBeDefined();
     expect(dbUser!.confirmed).toBeFalsy();
     expect(dbUser!.firstName).toBe(user.firstName);
-  }, 15000);
+  });
 });
