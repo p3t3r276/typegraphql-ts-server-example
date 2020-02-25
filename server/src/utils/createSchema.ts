@@ -9,7 +9,6 @@ import { MeResolver } from "../modules/user/Me";
 
 export const createSchema = () =>
   buildSchema({
-    //resolvers: [__dirname + "/../modules/*/*.ts"],
     resolvers: [
       ChangePasswordResolver,
       ConfirmUserResolver,
