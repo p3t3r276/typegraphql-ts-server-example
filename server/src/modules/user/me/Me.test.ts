@@ -40,6 +40,25 @@ describe("Me", () => {
       userId: user.id
     });
 
-    console.log(response);
+    expect(response).toMatchObject({
+      data: {
+        me: {
+          id: `${user.id}`,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email
+        }
+      }
+    });
+  });
+
+  it("rerurn null", async () => {
+    const response = await gCall({
+      source: meQuery
+    });
+
+    expect(response).toMatchObject({
+      data: { me: null }
+    });
   });
 });
