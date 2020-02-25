@@ -5,7 +5,7 @@ import { MyContext } from "../../types/MyContext";
 @Resolver()
 export class MeResolver {
   @Query(() => User, { nullable: true })
-  async Me(@Ctx() ctx: MyContext): Promise<User | undefined> {
+  async me(@Ctx() ctx: MyContext): Promise<User | undefined> {
     if (!ctx.req.session!.userId) {
       return undefined;
     }
