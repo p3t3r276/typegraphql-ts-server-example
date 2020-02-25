@@ -35,6 +35,7 @@ describe("Register", () => {
       email: faker.internet.email(),
       password: faker.internet.password()
     };
+
     const response = await gCall({
       source: registerMutation,
       variableValues: {
@@ -56,5 +57,5 @@ describe("Register", () => {
     expect(dbUser).toBeDefined();
     expect(dbUser!.confirmed).toBeFalsy();
     expect(dbUser!.firstName).toBe(user.firstName);
-  });
+  }, 15000);
 });
