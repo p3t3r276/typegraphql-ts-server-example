@@ -19,22 +19,22 @@ const main = async () => {
   const schema = await createSchema();
 
   const apolloServer = new ApolloServer({
-    schema,
-    context: ({ req, res }: any) => ({ req, res }),
-    validationRules: [
-      queryComplexity({
-        // maximum allowed query complexity, queries above this threshold will be rejected
-        maximumComplexity: 8,
-        variables: {},
-        onComplete: (complexity: number) => {
-          console.log("Query complexity:", complexity);
-        },
-        estimators: [
-          fieldConfigEstimator(),
-          simpleEstimator({ defaultComplexity: 1 })
-        ]
-      }) as any
-    ]
+    //schema,
+    //context: ({ req, res }: any) => ({ req, res }),
+    //validationRules: [
+    //queryComplexity({
+    //// maximum allowed query complexity, queries above this threshold will be rejected
+    //maximumComplexity: 8,
+    //variables: {},
+    //onComplete: (complexity: number) => {
+    //console.log("Query complexity:", complexity);
+    //},
+    //estimators: [
+    //fieldConfigEstimator(),
+    //simpleEstimator({ defaultComplexity: 1 })
+    //]
+    //}) as any
+    //]
   });
 
   const app = Express();
