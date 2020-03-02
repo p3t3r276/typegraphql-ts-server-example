@@ -19,8 +19,8 @@ const main = async () => {
   const schema = await createSchema();
 
   const apolloServer = new ApolloServer({
-    //schema,
-    //context: ({ req, res }: any) => ({ req, res }),
+    schema,
+    context: ({ req, res }: any) => ({ req, res })
     //validationRules: [
     //queryComplexity({
     //// maximum allowed query complexity, queries above this threshold will be rejected
